@@ -1,0 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Portal Login</title><link rel="stylesheet" href="${pageContext.request.contextPath}/assets/style.css"></head><body class="login-bg">
+<div class="login-card"><div class="logo">K</div><span class="eyebrow">KPRIET · STUDENT SERVICES</span><h1>Welcome back</h1><p class="muted">Sign in to access the student portal.</p>
+<% if(request.getAttribute("error")!=null){ %><div class="alert">Invalid username or password. Please try again.</div><% } %>
+<form method="post" action="${pageContext.request.contextPath}/login"><label>Username<input name="username" required autocomplete="username"></label><label>Password<input type="password" name="password" required autocomplete="current-password"></label><button class="btn" type="submit">Sign in →</button></form><small>Demo account must be created by the administrator using AdminSeed.</small></div></body></html>

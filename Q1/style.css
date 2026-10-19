@@ -1,0 +1,111 @@
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #0f1226;
+  --card: rgba(255,255,255,.08);
+  --line: rgba(255,255,255,.18);
+  --text: #eef0ff;
+  --muted: #a5abd6;
+  --a: #7c5cff;
+  --b: #00d4ff;
+  --err: #ff6b81;
+  --ok: #2ee6a6;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+.bg-shape { position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; }
+.s1 { width: 380px; height: 380px; background: var(--a); top: -100px; left: -100px; opacity: .5; }
+.s2 { width: 340px; height: 340px; background: var(--b); bottom: -100px; right: -80px; opacity: .35; }
+
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; padding: 18px 28px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.logo {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 12px; background: linear-gradient(135deg, var(--a), var(--b));
+  font-size: 14px;
+}
+nav { display: flex; gap: 8px; }
+nav a {
+  color: var(--muted); text-decoration: none; padding: 8px 16px;
+  border-radius: 20px; transition: .2s;
+}
+nav a:hover, nav a.active { background: var(--card); color: var(--text); }
+
+.card {
+  max-width: 560px; margin: 20px auto; padding: 32px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 20px; backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px #0006;
+}
+.card.wide { max-width: 900px; }
+.card-head { text-align: center; margin-bottom: 20px; }
+.card-head h1 {
+  margin: 0 0 6px; font-size: 26px;
+  background: linear-gradient(90deg, var(--a), var(--b));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.card-head p { margin: 0; color: var(--muted); }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { margin-bottom: 14px; }
+label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--muted); }
+
+input, select {
+  width: 100%; padding: 12px 14px; font-size: 15px; color: var(--text);
+  background: #ffffff10; border: 1px solid var(--line); border-radius: 10px;
+  transition: .2s;
+}
+select option { color: #111; }
+input:focus, select:focus {
+  outline: none; border-color: var(--b); box-shadow: 0 0 0 3px #00d4ff33;
+}
+input.invalid, select.invalid { border-color: var(--err); }
+
+.error { display: block; min-height: 16px; margin-top: 4px; font-size: 12px; color: var(--err); }
+
+.strength { height: 5px; margin-top: 8px; background: #ffffff1a; border-radius: 4px; overflow: hidden; }
+#strengthBar { height: 100%; width: 0; transition: .3s; }
+#strengthText { font-size: 12px; color: var(--muted); }
+
+.btn {
+  display: block; width: 100%; margin-top: 14px; padding: 13px;
+  text-align: center; text-decoration: none; font-size: 15px; font-weight: 600;
+  color: #fff; border: 0; border-radius: 10px; cursor: pointer;
+  background: linear-gradient(90deg, var(--a), var(--b)); transition: .2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px #7c5cff55; }
+.btn.ghost { background: transparent; border: 1px solid var(--line); }
+.btn.danger { background: #e5484d; }
+
+#success { text-align: center; color: var(--ok); font-weight: 700; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.student-card {
+  padding: 18px; background: #ffffff0d; border: 1px solid var(--line);
+  border-left: 4px solid var(--a); border-radius: 14px; overflow-wrap: anywhere;
+}
+.student-card h3 { margin: 0 0 8px; }
+.student-card p { margin: 6px 0; font-size: 14px; color: var(--muted); }
+.pill {
+  display: inline-block; padding: 3px 10px; font-size: 12px;
+  background: #7c5cff33; color: #c9bcff; border-radius: 20px;
+}
+
+footer { text-align: center; padding: 20px; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 600px) {
+  .row { grid-template-columns: 1fr; }
+  .card { margin: 14px 12px; padding: 22px; }
+  .topbar { justify-content: center; }
+}

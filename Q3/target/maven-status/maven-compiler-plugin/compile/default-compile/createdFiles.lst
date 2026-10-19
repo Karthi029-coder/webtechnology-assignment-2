@@ -1,0 +1,7 @@
+in\kpriet\portal\FileServlet.class
+in\kpriet\portal\LogoutServlet.class
+in\kpriet\portal\AuthFilter.class
+in\kpriet\portal\AdminSeed.class
+in\kpriet\portal\Db.class
+in\kpriet\portal\LoginServlet.class
+in\kpriet\portal\StudentServlet.class

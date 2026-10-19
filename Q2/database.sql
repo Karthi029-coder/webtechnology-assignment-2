@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS college_admin
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE college_admin;
+
+CREATE TABLE IF NOT EXISTS students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    roll_number VARCHAR(30) NOT NULL UNIQUE,
+    email VARCHAR(120) NOT NULL,
+    course VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS student_files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    file_type VARCHAR(100) NOT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);

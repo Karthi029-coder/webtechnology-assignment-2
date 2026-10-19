@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-shape s1"></div>
+<div class="bg-shape s2"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="logo">SR</span> Student Registration Portal</div>
+  <nav>
+    <a href="index.html">Register</a>
+    <a href="list.html" class="active">Registrations</a>
+  </nav>
+</header>
+
+<main class="card wide">
+  <div class="card-head">
+    <h1>Registered Students</h1>
+    <p id="count"></p>
+  </div>
+  <div id="studentList" class="grid"></div>
+  <a class="btn ghost" href="index.html">Back to Registration</a>
+</main>
+
+<footer>Student Registration Portal | 2026</footer>
+
+<script>
+const students = JSON.parse(localStorage.getItem("students") || "[]");
+const list = document.getElementById("studentList");
+document.getElementById("count").textContent =
+  "Total Registered Students: " + students.length;
+
+function addText(parent, tag, value) {
+  const el = document.createElement(tag);
+  el.textContent = value;
+  parent.appendChild(el);
+  return el;
+}
+
+if (students.length === 0) {
+  addText(list, "p", "No registrations found. Please register a student first.");
+}
+
+students.forEach(function (s, i) {
+  const card = document.createElement("div");
+  card.className = "student-card";
+  addText(card, "h3", s.name);
+  addText(card, "span", s.roll).className = "pill";
+  addText(card, "p", "Email: " + s.email);
+  addText(card, "p", "Course: " + s.course);
+  addText(card, "p", "Document: " + s.document);
+
+  const del = document.createElement("button");
+  del.className = "btn danger";
+  del.textContent = "Delete";
+  del.addEventListener("click", function () {
+    if (confirm("Delete this registration?")) {
+      students.splice(i, 1);
+      localStorage.setItem("students", JSON.stringify(students));
+      location.reload();
+    }
+  });
+  card.appendChild(del);
+  list.appendChild(card);
+});
+</script>
+</body>
+</html>
